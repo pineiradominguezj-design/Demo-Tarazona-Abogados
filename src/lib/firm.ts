@@ -39,24 +39,24 @@ export interface TeamMember {
 export const TEAM: TeamMember[] = [
   {
     id: "l1",
-    name: "Lucía Marco Herrero",
-    initials: "LM",
+    name: "Lucía Herrero Campos",
+    initials: "LH",
     role: { es: "Responsable de Extranjería", en: "Head of Immigration" },
     permission: "publica",
     areas: ["extranjeria"],
   },
   {
     id: "l2",
-    name: "Daniel Ortí Sanchis",
-    initials: "DO",
+    name: "Daniel Prieto Rubio",
+    initials: "DP",
     role: { es: "Responsable de Derecho Penal", en: "Head of Criminal Law" },
     permission: "publica",
     areas: ["penal"],
   },
   {
     id: "l3",
-    name: "Carmen Lloret Vidal",
-    initials: "CL",
+    name: "Carmen Serrano Molina",
+    initials: "CS",
     role: {
       es: "Civil, familia e inmobiliario",
       en: "Civil, family and real estate",
@@ -66,24 +66,24 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "l4",
-    name: "Pablo Escrivá Gil",
-    initials: "PE",
-    role: { es: "Derecho ecuestre y deportivo", en: "Equestrian and sports law" },
+    name: "Pablo Cano Ibáñez",
+    initials: "PC",
+    role: { es: "Responsable de Laboral", en: "Head of Employment Law" },
     permission: "publica",
-    areas: ["ecuestre"],
+    areas: ["laboral"],
   },
   {
     id: "t5",
-    name: "Nerea Bataller Ripoll",
-    initials: "NB",
+    name: "Nerea Duarte Salas",
+    initials: "ND",
     role: { es: "Tramitación procesal", en: "Case handler" },
     permission: "redacta",
     areas: ["extranjeria", "civil", "inmobiliario"],
   },
   {
     id: "t6",
-    name: "Iván Peiró Mompó",
-    initials: "IP",
+    name: "Iván Nieto Cuesta",
+    initials: "IN",
     role: { es: "Administración y recepción", en: "Office and front desk" },
     permission: "redacta",
     areas: [],
@@ -273,12 +273,12 @@ export const AREA_PHASES: Record<AreaId, LocalizedText[]> = {
     { es: "Ratificación", en: "Court ratification" },
     { es: "Resolución", en: "Decision" },
   ],
-  ecuestre: [
+  laboral: [
     { es: "Consulta y encargo", en: "Consultation and engagement" },
-    { es: "Informe pericial", en: "Expert report" },
-    { es: "Reclamación extrajudicial", en: "Out-of-court claim" },
+    { es: "Conciliación previa", en: "Pre-court conciliation" },
     { es: "Demanda", en: "Claim filed" },
-    { es: "Resolución", en: "Decision" },
+    { es: "Juicio", en: "Hearing" },
+    { es: "Sentencia", en: "Judgment" },
   ],
   inmobiliario: [
     { es: "Consulta y encargo", en: "Consultation and engagement" },
@@ -377,18 +377,21 @@ export const DOC_CHECKLISTS: Record<AreaId, ChecklistItem[]> = {
       },
     },
   ],
-  ecuestre: [
+  laboral: [
     {
-      id: "chk-equ-1",
-      name: { es: "Contrato de compraventa del animal", en: "Sale contract for the animal" },
-      help: { es: "Con anexos y condiciones firmadas.", en: "Including signed annexes and conditions." },
+      id: "chk-lab-1",
+      name: { es: "Contrato de trabajo y carta de despido", en: "Employment contract and dismissal letter" },
+      help: {
+        es: "El contrato con todos sus anexos y la carta tal y como te la entregaron, sin recortar.",
+        en: "The contract with all its annexes and the letter exactly as it was handed to you, uncropped.",
+      },
     },
     {
-      id: "chk-equ-2",
-      name: { es: "Informes veterinarios", en: "Veterinary reports" },
+      id: "chk-lab-2",
+      name: { es: "Nóminas de los doce últimos meses", en: "Payslips for the last twelve months" },
       help: {
-        es: "Los previos a la compra y los posteriores.",
-        en: "Both those predating the purchase and those after it.",
+        es: "Sirven para calcular el salario regulador. Si falta alguna, dínoslo y la pedimos a la empresa.",
+        en: "We use them to calculate the reference salary. If any is missing, tell us and we will request it from the company.",
       },
     },
   ],
@@ -456,7 +459,7 @@ export const REJECTION_REASONS: { id: string; text: LocalizedText }[] = [
 export const FIRM_SETTINGS = {
   /** Compromiso de respuesta en mensajería, en días laborables. */
   responseDays: 2,
-  urgencyPhone: "+34 655 55 14 92",
+  urgencyPhone: "+34 600 10 20 31",
   urgencyHours: {
     es: "Fuera de horario, solo para detenciones y citaciones urgentes",
     en: "Out of hours, for arrests and urgent summonses only",
@@ -593,7 +596,7 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-4",
     date: "2026-09-15T12:10:00",
     kind: "publicacion",
-    actor: "Lucía Marco Herrero",
+    actor: "Lucía Herrero Campos",
     caseId: "c-ext",
     detail: {
       es: "Publicó «La Administración nos pide dos documentos más»",
@@ -604,7 +607,7 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-5",
     date: "2026-09-15T11:58:00",
     kind: "documento",
-    actor: "Nerea Bataller Ripoll",
+    actor: "Nerea Duarte Salas",
     caseId: "c-ext",
     detail: {
       es: "Pidió al cliente el certificado bancario y el seguro médico",
@@ -615,7 +618,7 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-6",
     date: "2026-09-15T20:05:00",
     kind: "acceso",
-    actor: "Javier Soler Marín",
+    actor: "Javier Molina Ruiz",
     byClient: true,
     detail: { es: "Entró en el portal desde Android · Chrome", en: "Signed in from Android · Chrome" },
   },
@@ -623,7 +626,7 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-7",
     date: "2026-09-14T17:20:00",
     kind: "publicacion",
-    actor: "Daniel Ortí Sanchis",
+    actor: "Daniel Prieto Rubio",
     caseId: "c-pen",
     detail: {
       es: "Publicó «Ya hay fecha de juicio»",
@@ -645,7 +648,7 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-9",
     date: "2026-09-10T10:02:00",
     kind: "documento",
-    actor: "Carmen Lloret Vidal",
+    actor: "Carmen Serrano Molina",
     caseId: "c-inm",
     detail: {
       es: "Rechazó «Nómina julio» — no se leía bien",
@@ -656,28 +659,28 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     id: "act-10",
     date: "2026-09-02T09:30:00",
     kind: "acceso-alta",
-    actor: "Iván Peiró Mompó",
+    actor: "Iván Nieto Cuesta",
     detail: {
-      es: "Envió la invitación de acceso a Marta Ferrer Bellver",
-      en: "Sent the access invitation to Marta Ferrer Bellver",
+      es: "Envió la invitación de acceso a Marta Ibáñez Cortés",
+      en: "Sent the access invitation to Marta Ibáñez Cortés",
     },
   },
   {
     id: "act-11",
     date: "2026-08-28T16:12:00",
     kind: "publicacion",
-    actor: "Pablo Escrivá Gil",
-    caseId: "c-equ",
+    actor: "Pablo Cano Ibáñez",
+    caseId: "c-lab",
     detail: {
-      es: "Publicó «Hemos enviado el burofax»",
-      en: "Published “We have sent the formal notice”",
+      es: "Publicó «Presentamos la papeleta de conciliación»",
+      en: "Published “We filed the conciliation claim”",
     },
   },
   {
     id: "act-12",
     date: "2026-08-20T13:44:00",
     kind: "descarga",
-    actor: "Gestoría Ribalta S.L.",
+    actor: "Gestoría Alcores S.L.",
     byClient: true,
     caseId: "c-inm",
     detail: {

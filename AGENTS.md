@@ -48,10 +48,19 @@ vuelve a ser un buscar-y-reemplazar.
   `DOC_CHECKLISTS`, los expedientes). Por lo mismo, **ninguna pantalla puede
   nombrar un área literal**: el `defaultOpen` de las fases en
   `despacho/configuracion` abre la primera por índice, no «extranjería».
+- **Cambiar el juego de áreas arrastra cuatro sitios, y el compilador los canta
+  todos**: `AREA_PHASES` y `DOC_CHECKLISTS` en `lib/firm.ts` (son
+  `Record<AreaId, …>`, así que falta una clave y es error), el `areas:` de cada
+  persona de `TEAM`, y el `area:` de cada expediente de `lib/data.ts`. Lo único
+  que el compilador no ve es si el escenario sigue teniendo sentido: cuando
+  desaparece el área de un expediente hay que **reescribir el expediente**, no
+  reetiquetarlo —sus fases, sus documentos y sus provisiones eran de ese
+  derecho—. Por eso las áreas se cambian **antes** que el escenario.
 - **El icono de un área es un dibujo con nombre propio** (`passport`, `scales`,
   `briefcase`…) en el catálogo de `components/icons.tsx`, elegido desde
   `config/areas.ts`. Añadir un área no obliga a tocar los iconos; añadir un
-  dibujo nuevo, sí.
+  dibujo nuevo, sí. El catálogo trae más dibujos que áreas usa el escenario, a
+  propósito.
 - **La clave de `localStorage` (`APP.storageKey`) tiene que ser distinta en cada
   despacho.** En producción cada demo vive en su dominio, pero en desarrollo
   todas corren en `localhost:3000`, que es el mismo origen: con la clave

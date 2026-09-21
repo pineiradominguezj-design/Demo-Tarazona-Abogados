@@ -239,10 +239,11 @@ function DraftRow({
       }
       summary={
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          {/* Hueco fijo para el distintivo: los nombres de área van de
-              "Penal" a "Ecuestre y deportivo", y sin reservarles el mismo
-              ancho los títulos de los borradores empiezan cada uno en un
-              sitio. */}
+          {/* Hueco fijo para el distintivo: los nombres de área son de
+              longitudes muy distintas ("Penal" frente a "Civil y familia"),
+              y sin reservarles el mismo ancho los títulos de los borradores
+              empiezan cada uno en un sitio. Si un despacho trae nombres más
+              largos, lo que se ajusta es este `sm:w-40`. */}
           <span className="shrink-0 sm:w-40">
             <AreaBadge area={file.area} size="sm" />
           </span>

@@ -20,6 +20,10 @@ import type { AreaIconName } from "@/components/icons";
  * su fondo, así que el par tiene que dar contraste suficiente. Estos colores no
  * salen de `theme.css` a propósito —son cinco familias distintas, no variantes
  * del acento— pero conviene que convivan con él.
+ *
+ * Las cinco de abajo son las del escenario de ejemplo, elegidas por ser las más
+ * corrientes en un despacho generalista. Se sustituyen por las del despacho que
+ * toque; el escenario de `data.ts` va detrás, no al revés.
  */
 
 interface AreaDef {
@@ -48,11 +52,11 @@ export const AREA_DEFS = [
     icon: "scales",
   },
   {
-    id: "ecuestre",
-    label: { es: "Ecuestre y deportivo", en: "Equestrian & sports" },
+    id: "laboral",
+    label: { es: "Laboral", en: "Employment" },
     color: "#6B7D52",
     tint: "#F1F4EC",
-    icon: "horse",
+    icon: "briefcase",
   },
   {
     id: "civil",
