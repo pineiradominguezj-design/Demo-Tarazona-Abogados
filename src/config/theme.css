@@ -1,0 +1,50 @@
+/*
+ * TEMA DEL DESPACHO
+ *
+ * Segundo de los tres ficheros que hay que tocar para montar un despacho
+ * nuevo (los otros son `identity.ts` y `areas.ts`). Aquí vive la paleta
+ * entera: ningún componente escribe un color a mano.
+ *
+ * Los valores que trae la plantilla son un punto de partida, no una marca.
+ * Al cambiarlos hay dos restricciones que el diseño da por supuestas:
+ *
+ * 1. `--color-accent` se usa de fondo con texto negro encima (el idioma
+ *    activo, el contador de mensajes sin leer), así que tiene que ser un
+ *    color CLARO. Un acento oscuro deja ese texto ilegible.
+ * 2. Por lo mismo, el acento no vale para texto sobre blanco: no llega al
+ *    contraste mínimo. Para rotular estados se usa la tinta oscura de
+ *    `src/lib/states.ts`, no el acento.
+ *
+ * La tipografía es la única pieza del tema que NO puede vivir aquí:
+ * `next/font/google` necesita un import estático. Cambiarla son dos
+ * ediciones que van juntas: el import de `src/app/layout.tsx` y la variable
+ * `--font-sans` de abajo.
+ */
+@theme {
+  /* Acento de marca */
+  --color-accent: #ebb439;
+  --color-accent-light: #ecc773;
+  --color-accent-dark: #c8951f;
+  --color-accent-wash: #fdf7e9;
+
+  /* Tinta: del titular al texto secundario */
+  --color-ink: #000000;
+  --color-ink-soft: #191919;
+  --color-ink-muted: #4b4f58;
+  --color-ink-faint: #767b85;
+
+  /* Neutros de estructura */
+  --color-line: #e2e2e2;
+  --color-surface: #f7f7f5;
+
+  /*
+   * Avisos informativos: el recuadro de estimaciones de la Administración.
+   * Es el único color que no es ni acento ni tinta, y existe para que ese
+   * recuadro no se confunda con una alerta.
+   */
+  --color-info: #bad4e3;
+  --color-info-wash: #f4f9fc;
+  --color-info-ink: #35617c;
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/*
+ * La paleta y la tipografía no viven aquí: son lo que cambia en cada despacho
+ * y están aisladas en `src/config/theme.css`. Este fichero es la parte del
+ * sistema de diseño que NO cambia —los utilitarios de estructura—, escrita
+ * siempre contra los tokens, nunca contra un color literal.
+ */
+@import "../config/theme.css";
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+  }
+
+  /* Titulares en trazo fino y muy espaciado, como un logotipo grabado. */
+  .ui-display {
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ui-eyebrow {
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .ui-card {
+    background-color: #ffffff;
+    border: 1px solid var(--color-line);
+  }
+
+  /* Franja de marca: el acento desvaneciéndose hacia la derecha. */
+  .ui-rule {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent) 0%,
+      var(--color-accent-light) 50%,
+      transparent 100%
+    );
+    height: 2px;
+  }
+
+  /* Al pasar el ratón por una tarjeta pulsable: filo de acento y leve elevación. */
+  .ui-card-hover {
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      transform 150ms ease;
+  }
+
+  .ui-card-hover:hover {
+    border-color: var(--color-accent-light);
+    box-shadow: 0 6px 20px -12px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-card-hover:hover {
+      transform: none;
+    }
+  }
+
+  .ui-scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+  }
+}
+
+@media print {
+  .ui-no-print {
+    display: none !important;
+  }
+}
