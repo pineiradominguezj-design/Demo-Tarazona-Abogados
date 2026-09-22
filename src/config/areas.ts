@@ -21,9 +21,15 @@ import type { AreaIconName } from "@/components/icons";
  * salen de `theme.css` a propósito —son cinco familias distintas, no variantes
  * del acento— pero conviene que convivan con él.
  *
- * Las cinco de abajo son las del escenario de ejemplo, elegidas por ser las más
- * corrientes en un despacho generalista. Se sustituyen por las del despacho que
- * toque; el escenario de `data.ts` va detrás, no al revés.
+ * Las seis de abajo son las de Tarazona Abogados. Sus tonos están repartidos por
+ * el círculo cromático para que se distingan entre sí, y ninguno cae en la
+ * franja verde del acento: el área tiene que leerse como familia propia y no
+ * como una variante de la marca. La excepción buscada es el burdeos de penal,
+ * que sí es un color de la casa.
+ *
+ * Protección de datos no tiene expediente en el escenario —el portal enseña
+ * cinco— pero existe aquí, que es lo que hace que aparezca en los filtros y en
+ * las áreas de cada persona del equipo.
  */
 
 interface AreaDef {
@@ -38,39 +44,46 @@ interface AreaDef {
 
 export const AREA_DEFS = [
   {
-    id: "extranjeria",
-    label: { es: "Extranjería", en: "Immigration" },
-    color: "#EBB439",
-    tint: "#FDF7E9",
-    icon: "passport",
+    id: "laboral",
+    label: { es: "Derecho laboral", en: "Employment law" },
+    color: "#5F7043",
+    tint: "#F0F3EC",
+    icon: "briefcase",
+  },
+  {
+    id: "inmobiliario",
+    label: { es: "Derecho inmobiliario", en: "Real estate law" },
+    color: "#8F5F37",
+    tint: "#F6F1EB",
+    icon: "house",
+  },
+  {
+    id: "sucesiones",
+    label: { es: "Derecho de sucesiones", en: "Wills and probate" },
+    color: "#6E5689",
+    tint: "#F2EFF6",
+    icon: "scroll",
+  },
+  {
+    id: "civil",
+    label: { es: "Derecho civil", en: "Civil law" },
+    color: "#4A5D9B",
+    tint: "#EEF0F8",
+    icon: "family",
   },
   {
     id: "penal",
     label: { es: "Derecho penal", en: "Criminal law" },
-    color: "#8C3B3B",
-    tint: "#F9EFEF",
+    color: "#5C2D3C",
+    tint: "#F5EEF0",
     icon: "scales",
   },
   {
-    id: "laboral",
-    label: { es: "Laboral", en: "Employment" },
-    color: "#6B7D52",
-    tint: "#F1F4EC",
-    icon: "briefcase",
-  },
-  {
-    id: "civil",
-    label: { es: "Civil y familia", en: "Civil & family" },
-    color: "#4A7C9B",
-    tint: "#EDF3F7",
-    icon: "family",
-  },
-  {
-    id: "inmobiliario",
-    label: { es: "Inmobiliario", en: "Real estate" },
-    color: "#988A81",
-    tint: "#F5F3F1",
-    icon: "house",
+    id: "datos",
+    label: { es: "Protección de datos", en: "Data protection" },
+    color: "#256B76",
+    tint: "#EAF4F6",
+    icon: "shield",
   },
 ] as const satisfies readonly AreaDef[];
 

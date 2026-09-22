@@ -39,51 +39,57 @@ export interface TeamMember {
 export const TEAM: TeamMember[] = [
   {
     id: "l1",
-    name: "Lucía Herrero Campos",
-    initials: "LH",
-    role: { es: "Responsable de Extranjería", en: "Head of Immigration" },
-    permission: "publica",
-    areas: ["extranjeria"],
-  },
-  {
-    id: "l2",
-    name: "Daniel Prieto Rubio",
-    initials: "DP",
-    role: { es: "Responsable de Derecho Penal", en: "Head of Criminal Law" },
-    permission: "publica",
-    areas: ["penal"],
-  },
-  {
-    id: "l3",
-    name: "Carmen Serrano Molina",
-    initials: "CS",
+    name: "Álvaro Benlloch Esteve",
+    initials: "AB",
     role: {
-      es: "Civil, familia e inmobiliario",
-      en: "Civil, family and real estate",
+      es: "Responsable de Derecho laboral",
+      en: "Head of Employment Law",
     },
-    permission: "publica",
-    areas: ["civil", "inmobiliario"],
-  },
-  {
-    id: "l4",
-    name: "Pablo Cano Ibáñez",
-    initials: "PC",
-    role: { es: "Responsable de Laboral", en: "Head of Employment Law" },
     permission: "publica",
     areas: ["laboral"],
   },
   {
+    id: "l2",
+    name: "Marta Ferrandis Gil",
+    initials: "MF",
+    role: {
+      es: "Responsable de Inmobiliario y Sucesiones",
+      en: "Head of Real Estate and Probate",
+    },
+    permission: "publica",
+    areas: ["inmobiliario", "sucesiones"],
+  },
+  {
+    id: "l3",
+    name: "Ignacio Peris Almela",
+    initials: "IP",
+    role: { es: "Derecho civil y penal", en: "Civil and criminal law" },
+    permission: "publica",
+    areas: ["civil", "penal"],
+  },
+  {
+    id: "l4",
+    name: "Celia Bonet Ramos",
+    initials: "CB",
+    role: {
+      es: "Protección de datos y compliance",
+      en: "Data protection and compliance",
+    },
+    permission: "publica",
+    areas: ["datos"],
+  },
+  {
     id: "t5",
-    name: "Nerea Duarte Salas",
-    initials: "ND",
+    name: "Vicent Ortells Sanchis",
+    initials: "VO",
     role: { es: "Tramitación procesal", en: "Case handler" },
     permission: "redacta",
-    areas: ["extranjeria", "civil", "inmobiliario"],
+    areas: ["laboral", "civil", "penal"],
   },
   {
     id: "t6",
-    name: "Iván Nieto Cuesta",
-    initials: "IN",
+    name: "Lucía Navarro Ripoll",
+    initials: "LN",
     role: { es: "Administración y recepción", en: "Office and front desk" },
     permission: "redacta",
     areas: [],
@@ -94,13 +100,13 @@ export const TEAM: TeamMember[] = [
  * Quién se supone que está mirando la pantalla. No hay sesión de despacho —la
  * demostración entra directa—, pero el filtro «Solo lo mío» necesita un «yo».
  *
- * Es Carmen a propósito: lleva dos expedientes, uno con un borrador esperando
+ * Es Marta a propósito: lleva dos expedientes, uno con un borrador esperando
  * y otro sin nada pendiente. Así el filtro se nota (el tablero pasa de cinco
  * filas a dos) y, sobre todo, su panel de pendientes queda en un solo asunto:
  * al publicarlo se vacía y sale el estado «Todo al día», que de otro modo no
  * habría manera de enseñar sin ir tachando el trabajo de todo el despacho.
  */
-export const CURRENT_USER_ID = "l3";
+export const CURRENT_USER_ID = "l2";
 
 /** Qué mira la pantalla de Hoy: todo el despacho o solo los asuntos propios. */
 export type FirmScope = "all" | "mine";
@@ -130,9 +136,9 @@ export interface ClientAccess {
  * "invitado" y "suspendido" se enseñan en vivo desde los botones de la ficha.
  */
 export const CLIENT_ACCESS: ClientAccess[] = [
-  { clientId: "cli-1", status: "activo", code: "EXP-0148", invitedOn: "2026-05-04" },
-  { clientId: "cli-2", status: "activo", code: "EXP-0231", invitedOn: "2026-04-15" },
-  { clientId: "cli-3", status: "activo", code: "EXP-0034", invitedOn: "2026-09-02" },
+  { clientId: "cli-1", status: "activo", code: "EXP-0061", invitedOn: "2026-05-18" },
+  { clientId: "cli-2", status: "activo", code: "EXP-0198", invitedOn: "2026-04-27" },
+  { clientId: "cli-3", status: "activo", code: "EXP-0087", invitedOn: "2026-07-06" },
 ];
 
 export function getClientAccess(clientId: string): ClientAccess | undefined {
@@ -197,17 +203,20 @@ export const ACTION_TEMPLATES: ActionTemplate[] = [
   },
   {
     id: "tpl-3",
-    area: "extranjeria",
-    label: { es: "Cita de huellas", en: "Fingerprint appointment" },
+    area: "inmobiliario",
+    label: { es: "Cita en notaría", en: "Notary appointment" },
     kind: "procedimiento",
-    title: { es: "Ya tienes cita para las huellas", en: "Your fingerprint appointment is booked" },
+    title: {
+      es: "Ya tenemos día y hora en la notaría",
+      en: "The notary appointment is booked",
+    },
     detail: {
-      es: "Te hemos conseguido cita para la toma de huellas. Apunta la fecha y el lugar en el apartado de fechas señaladas; lleva el pasaporte y el justificante de la tasa.",
-      en: "We have booked your fingerprint appointment. The date and place are in the key dates section; bring your passport and the fee receipt.",
+      es: "La notaría ha confirmado la firma. Tienes la fecha y la dirección en el apartado de fechas señaladas; lleva tu documento de identidad y el medio de pago acordado. Te acompañamos a la firma.",
+      en: "The notary has confirmed the signing. The date and address are in the key dates section; bring your identity document and the agreed means of payment. We will be with you at the signing.",
     },
     formalName: {
-      es: "Cita previa para toma de reseña decadactilar",
-      en: "Appointment for fingerprint registration",
+      es: "Señalamiento para el otorgamiento de escritura pública",
+      en: "Appointment for the execution of the public deed",
     },
   },
   {
@@ -251,28 +260,6 @@ export const ACTION_TEMPLATES: ActionTemplate[] = [
  * área. Son las mismas que el cliente ve en la barra de fases del portal.
  */
 export const AREA_PHASES: Record<AreaId, LocalizedText[]> = {
-  extranjeria: [
-    { es: "Consulta y encargo", en: "Consultation and engagement" },
-    { es: "Reunión de documentación", en: "Gathering documents" },
-    { es: "Solicitud presentada", en: "Application filed" },
-    { es: "Subsanación", en: "Additional information" },
-    { es: "Resolución", en: "Decision" },
-    { es: "Huellas y tarjeta", en: "Fingerprints and card" },
-  ],
-  penal: [
-    { es: "Consulta y encargo", en: "Consultation and engagement" },
-    { es: "Instrucción", en: "Investigation" },
-    { es: "Escrito de defensa", en: "Defence statement" },
-    { es: "Juicio oral", en: "Trial" },
-    { es: "Sentencia", en: "Judgment" },
-  ],
-  civil: [
-    { es: "Consulta y encargo", en: "Consultation and engagement" },
-    { es: "Negociación", en: "Negotiation" },
-    { es: "Convenio redactado", en: "Agreement drafted" },
-    { es: "Ratificación", en: "Court ratification" },
-    { es: "Resolución", en: "Decision" },
-  ],
   laboral: [
     { es: "Consulta y encargo", en: "Consultation and engagement" },
     { es: "Conciliación previa", en: "Pre-court conciliation" },
@@ -283,9 +270,37 @@ export const AREA_PHASES: Record<AreaId, LocalizedText[]> = {
   inmobiliario: [
     { es: "Consulta y encargo", en: "Consultation and engagement" },
     { es: "Comprobaciones previas", en: "Preliminary checks" },
-    { es: "Arras", en: "Deposit agreement" },
-    { es: "Escritura", en: "Deed of sale" },
+    { es: "Contrato de arras", en: "Deposit agreement" },
+    { es: "Escritura pública", en: "Signing before the notary" },
     { es: "Impuestos y registro", en: "Taxes and registration" },
+  ],
+  sucesiones: [
+    { es: "Consulta y encargo", en: "Consultation and engagement" },
+    { es: "Documentación y últimas voluntades", en: "Documents and will search" },
+    { es: "Escritura de aceptación", en: "Deed of acceptance" },
+    { es: "Impuestos", en: "Taxes" },
+    { es: "Inscripción registral", en: "Land Registry entry" },
+  ],
+  civil: [
+    { es: "Consulta y encargo", en: "Consultation and engagement" },
+    { es: "Informe pericial", en: "Expert report" },
+    { es: "Reclamación extrajudicial", en: "Out-of-court claim" },
+    { es: "Demanda", en: "Claim filed" },
+    { es: "Juicio", en: "Hearing" },
+  ],
+  penal: [
+    { es: "Consulta y encargo", en: "Consultation and engagement" },
+    { es: "Instrucción", en: "Investigation" },
+    { es: "Preparación del juicio", en: "Trial preparation" },
+    { es: "Juicio oral", en: "Trial" },
+    { es: "Sentencia", en: "Judgment" },
+  ],
+  datos: [
+    { es: "Consulta y encargo", en: "Consultation and engagement" },
+    { es: "Auditoría de tratamientos", en: "Data processing audit" },
+    { es: "Plan de adecuación", en: "Compliance plan" },
+    { es: "Implantación", en: "Implementation" },
+    { es: "Seguimiento", en: "Ongoing review" },
   ],
 };
 
@@ -301,86 +316,100 @@ export interface ChecklistItem {
 }
 
 /**
- * Lo que se suele pedir en cada tipo de asunto. Extranjería viene desarrollada
+ * Lo que se suele pedir en cada tipo de asunto. Inmobiliario viene desarrollada
  * porque es el área con la que arranca la demostración.
  */
 export const DOC_CHECKLISTS: Record<AreaId, ChecklistItem[]> = {
-  extranjeria: [
+  inmobiliario: [
     {
-      id: "chk-ext-1",
-      name: { es: "Pasaporte completo", en: "Full passport" },
-      help: {
-        es: "Todas las páginas escritas, incluidas las de sellos. Sirve una foto legible con el móvil.",
-        en: "Every page with writing on it, stamps included. A readable phone photo is fine.",
-      },
-    },
-    {
-      id: "chk-ext-2",
-      name: { es: "Certificado de empadronamiento", en: "Certificate of residence registration" },
-      help: {
-        es: "Lo expide tu ayuntamiento. Tiene que estar emitido en los últimos tres meses.",
-        en: "Issued by your town hall. It must be no more than three months old.",
-      },
-    },
-    {
-      id: "chk-ext-3",
-      name: { es: "Certificado bancario", en: "Bank certificate" },
-      help: {
-        es: "Lo emite tu banco y acredita que la inversión sigue a tu nombre. No vale un extracto corriente.",
-        en: "Issued by your bank, confirming the investment is still in your name. A regular statement is not enough.",
-      },
-    },
-    {
-      id: "chk-ext-4",
-      name: { es: "Seguro médico", en: "Health insurance" },
-      help: {
-        es: "Certificado de la aseguradora con la cobertura y las fechas de vigencia.",
-        en: "Certificate from your insurer showing the cover and the dates it runs.",
-      },
-    },
-    {
-      id: "chk-ext-5",
-      name: { es: "Certificado de antecedentes penales", en: "Criminal record certificate" },
-      help: {
-        es: "Del país de origen y de los países donde hayas residido los últimos cinco años, traducido y legalizado.",
-        en: "From your home country and any country you have lived in for the last five years, translated and legalised.",
-      },
-    },
-  ],
-  penal: [
-    {
-      id: "chk-pen-1",
+      id: "chk-inm-1",
       name: { es: "Documento de identidad", en: "Identity document" },
-      help: { es: "DNI, NIE o pasaporte en vigor.", en: "Valid national ID, NIE or passport." },
+      help: {
+        es: "DNI, NIE o pasaporte en vigor, de todas las personas que compran. Es con lo que te identificará la notaría el día de la firma.",
+        en: "Valid national ID, NIE or passport for everyone buying. It is what the notary will identify you with on the day of the signing.",
+      },
     },
     {
-      id: "chk-pen-2",
-      name: { es: "Notificaciones recibidas", en: "Notices received" },
+      id: "chk-inm-2",
+      name: {
+        es: "Documentación sobre el origen de los fondos",
+        en: "Documents on the source of funds",
+      },
       help: {
-        es: "Cualquier papel que te hayan entregado el juzgado o la policía.",
-        en: "Any document handed to you by the court or the police.",
+        es: "La ley de prevención del blanqueo de capitales obliga al despacho y a la notaría a acreditar de dónde procede el dinero. Sirven los extractos de la cuenta de los últimos seis meses y el justificante de la venta o el ahorro con que se paga.",
+        en: "Anti-money-laundering law requires the firm and the notary to evidence where the money comes from. Bank statements for the last six months and proof of the sale or savings used to pay are enough.",
+      },
+    },
+    {
+      id: "chk-inm-3",
+      name: { es: "Justificante de la señal", en: "Proof of the deposit payment" },
+      help: {
+        es: "La transferencia de las arras, con fecha y concepto. La notaría tiene que reflejar en la escritura qué se pagó y cuándo.",
+        en: "The deposit transfer, showing date and reference. The notary has to record in the deed what was paid and when.",
+      },
+    },
+    {
+      id: "chk-inm-4",
+      name: {
+        es: "Certificado de eficiencia energética",
+        en: "Energy performance certificate",
+      },
+      help: {
+        es: "Lo aporta la parte vendedora y hay que entregarlo en la firma. Si no lo tienen, dínoslo con tiempo: conseguirlo lleva unos días.",
+        en: "The seller provides it and it has to be handed over at the signing. If they do not have it, tell us in good time: obtaining one takes a few days.",
+      },
+    },
+    {
+      id: "chk-inm-5",
+      name: {
+        es: "Oferta vinculante de la hipoteca, si la hay",
+        en: "Binding mortgage offer, if there is one",
+      },
+      help: {
+        es: "La ficha europea de información normalizada que te entrega el banco. La necesitamos para cuadrar el calendario con la notaría, que tiene que informarte antes de la firma.",
+        en: "The standardised European information sheet your bank gives you. We need it to line up the timetable with the notary, who must brief you before the signing.",
       },
     },
   ],
-  civil: [
+  sucesiones: [
     {
-      id: "chk-civ-1",
-      name: { es: "Libro de familia o certificado de matrimonio", en: "Family book or marriage certificate" },
-      help: { es: "Copia completa.", en: "Full copy." },
+      id: "chk-suc-1",
+      name: { es: "Certificado de defunción", en: "Death certificate" },
+      help: {
+        es: "El original que entrega la funeraria o el que expide el Registro Civil. Con una foto legible nos vale para empezar.",
+        en: "The original given by the funeral home, or the one issued by the Civil Registry. A legible photo is enough to start with.",
+      },
     },
     {
-      id: "chk-civ-2",
-      name: { es: "Últimas tres nóminas", en: "Last three payslips" },
+      id: "chk-suc-2",
+      name: {
+        es: "Certificados de saldo de las cuentas bancarias",
+        en: "Bank account balance certificates",
+      },
       help: {
-        es: "De ambas partes, si las hay.",
-        en: "From both parties, where applicable.",
+        es: "Pídelos en cada entidad indicando que son para una herencia: deben reflejar el saldo el día del fallecimiento, no el de hoy.",
+        en: "Ask each bank stating they are for an estate: they must show the balance on the date of death, not today's.",
+      },
+    },
+    {
+      id: "chk-suc-3",
+      name: {
+        es: "Escrituras de los inmuebles y último recibo del IBI",
+        en: "Property deeds and latest council tax receipt",
+      },
+      help: {
+        es: "De la escritura necesitamos el precio de compra y del recibo el valor catastral. Son los dos datos con los que se calculan los impuestos de la herencia.",
+        en: "From the deed we need the purchase price, and from the receipt the cadastral value. Those are the two figures used to calculate the estate's taxes.",
       },
     },
   ],
   laboral: [
     {
       id: "chk-lab-1",
-      name: { es: "Contrato de trabajo y carta de despido", en: "Employment contract and dismissal letter" },
+      name: {
+        es: "Contrato de trabajo y carta de despido",
+        en: "Employment contract and dismissal letter",
+      },
       help: {
         es: "El contrato con todos sus anexos y la carta tal y como te la entregaron, sin recortar.",
         en: "The contract with all its annexes and the letter exactly as it was handed to you, uncropped.",
@@ -388,25 +417,101 @@ export const DOC_CHECKLISTS: Record<AreaId, ChecklistItem[]> = {
     },
     {
       id: "chk-lab-2",
-      name: { es: "Nóminas de los doce últimos meses", en: "Payslips for the last twelve months" },
+      name: {
+        es: "Nóminas de los doce últimos meses",
+        en: "Payslips for the last twelve months",
+      },
       help: {
         es: "Sirven para calcular el salario regulador. Si falta alguna, dínoslo y la pedimos a la empresa.",
         en: "We use them to calculate the reference salary. If any is missing, tell us and we will request it from the company.",
       },
     },
-  ],
-  inmobiliario: [
     {
-      id: "chk-inm-1",
-      name: { es: "Documento de identidad", en: "Identity document" },
-      help: { es: "De todos los compradores.", en: "For every buyer." },
+      id: "chk-lab-3",
+      name: {
+        es: "Certificado de la prestación por desempleo",
+        en: "Unemployment benefit certificate",
+      },
+      help: {
+        es: "Se descarga de la sede electrónica del SEPE. Lo que cobres de paro se descuenta de lo que en su caso se reclame, así que hace falta el importe exacto.",
+        en: "You can download it from the SEPE online office. Unemployment benefit is offset against anything claimed, so we need the exact amount.",
+      },
+    },
+  ],
+  civil: [
+    {
+      id: "chk-civ-1",
+      name: {
+        es: "Contrato o escritura del que nace la reclamación",
+        en: "Contract or deed the claim arises from",
+      },
+      help: {
+        es: "Con todos sus anexos y, si los hay, los documentos de entrega.",
+        en: "With all its annexes and, where applicable, the handover documents.",
+      },
     },
     {
-      id: "chk-inm-2",
-      name: { es: "Justificante de la señal", en: "Proof of the deposit payment" },
+      id: "chk-civ-2",
+      name: {
+        es: "Fotografías o vídeos de los daños",
+        en: "Photos or videos of the damage",
+      },
       help: {
-        es: "La transferencia de las arras, con fecha y concepto.",
-        en: "The deposit transfer, showing date and reference.",
+        es: "Desde que aparecieron, aunque sean del móvil. Si conservan la fecha original, mejor.",
+        en: "From when they first appeared, phone pictures are fine. Better still if they keep their original date.",
+      },
+    },
+    {
+      id: "chk-civ-3",
+      name: {
+        es: "Comunicaciones con la otra parte",
+        en: "Correspondence with the other party",
+      },
+      help: {
+        es: "Correos, mensajes o partes de incidencia. Interesan especialmente los que reconozcan el problema.",
+        en: "Emails, messages or incident reports. Those acknowledging the problem are especially useful.",
+      },
+    },
+  ],
+  penal: [
+    {
+      id: "chk-pen-1",
+      name: { es: "Documento de identidad", en: "Identity document" },
+      help: {
+        es: "DNI, NIE o pasaporte en vigor.",
+        en: "Valid national ID, NIE or passport.",
+      },
+    },
+    {
+      id: "chk-pen-2",
+      name: { es: "Notificaciones recibidas", en: "Notices received" },
+      help: {
+        es: "Cualquier papel que te hayan entregado el juzgado o la policía, incluida la copia del atestado si te la dieron.",
+        en: "Any document handed to you by the court or the police, including a copy of the police report if you were given one.",
+      },
+    },
+  ],
+  datos: [
+    {
+      id: "chk-dat-1",
+      name: {
+        es: "Registro de actividades de tratamiento",
+        en: "Record of processing activities",
+      },
+      help: {
+        es: "Si ya lo tenéis, la versión vigente; si no, lo elaboramos nosotros a partir de la auditoría.",
+        en: "The current version if you already have one; if not, we will draw it up from the audit.",
+      },
+    },
+    {
+      id: "chk-dat-2",
+      name: {
+        es: "Contratos con proveedores que traten datos",
+        en: "Contracts with suppliers who process data",
+      },
+      help: {
+        es: "Nóminas, informática, hosting, marketing. Son los que hay que revisar como encargados del tratamiento.",
+        en: "Payroll, IT, hosting, marketing. These are the ones to review as data processors.",
       },
     },
   ],
@@ -459,7 +564,7 @@ export const REJECTION_REASONS: { id: string; text: LocalizedText }[] = [
 export const FIRM_SETTINGS = {
   /** Compromiso de respuesta en mensajería, en días laborables. */
   responseDays: 2,
-  urgencyPhone: "+34 600 10 20 31",
+  urgencyPhone: "+34 678 70 07 11",
   urgencyHours: {
     es: "Fuera de horario, solo para detenciones y citaciones urgentes",
     en: "Out of hours, for arrests and urgent summonses only",
@@ -467,8 +572,8 @@ export const FIRM_SETTINGS = {
   locales: [
     { id: "es", label: { es: "Español", en: "Spanish" } as LocalizedText, enabled: true },
     { id: "en", label: { es: "Inglés", en: "English" } as LocalizedText, enabled: true },
-    { id: "uk", label: { es: "Ucraniano", en: "Ukrainian" } as LocalizedText, enabled: false },
-    { id: "ar", label: { es: "Árabe", en: "Arabic" } as LocalizedText, enabled: false },
+    { id: "va", label: { es: "Valenciano", en: "Valencian" } as LocalizedText, enabled: false },
+    { id: "de", label: { es: "Alemán", en: "German" } as LocalizedText, enabled: false },
   ],
   /** Qué se publica solo con que alguien lo redacte, y qué exige aprobación. */
   publishDefaults: [
@@ -565,68 +670,108 @@ export interface ActivityEntry {
 export const ACTIVITY_LOG: ActivityEntry[] = [
   {
     id: "act-1",
-    date: "2026-09-16T18:42:00",
-    kind: "acceso",
-    actor: "Olena Kovalenko",
+    date: "2026-09-21T20:35:00",
+    kind: "mensaje",
+    actor: "Sergio Almenar Ballester",
     byClient: true,
-    detail: { es: "Entró en el portal desde iPhone · Safari", en: "Signed in from iPhone · Safari" },
+    caseId: "c-civ",
+    detail: { es: "Escribió un mensaje", en: "Wrote a message" },
   },
   {
     id: "act-2",
-    date: "2026-09-16T18:45:00",
-    kind: "descarga",
-    actor: "Olena Kovalenko",
+    date: "2026-09-21T20:31:00",
+    kind: "documento",
+    actor: "Sergio Almenar Ballester",
     byClient: true,
-    caseId: "c-ext",
+    caseId: "c-civ",
     detail: {
-      es: "Descargó «Justificante de presentación»",
-      en: "Downloaded “Filing receipt”",
+      es: "Subió «Fotos humedades dormitorio»",
+      en: "Uploaded “Bedroom damp photos”",
     },
   },
   {
     id: "act-3",
-    date: "2026-09-16T09:05:00",
-    kind: "mensaje",
-    actor: "Olena Kovalenko",
+    date: "2026-09-21T19:20:00",
+    kind: "acceso",
+    actor: "Helen Whitmore Clarke",
     byClient: true,
-    caseId: "c-ext",
-    detail: { es: "Escribió un mensaje", en: "Wrote a message" },
+    detail: {
+      es: "Entró en el portal desde iPhone · Safari",
+      en: "Signed in from iPhone · Safari",
+    },
   },
   {
     id: "act-4",
-    date: "2026-09-15T12:10:00",
-    kind: "publicacion",
-    actor: "Lucía Herrero Campos",
-    caseId: "c-ext",
+    date: "2026-09-19T09:50:00",
+    kind: "documento",
+    actor: "Marta Ferrandis Gil",
+    caseId: "c-suc",
     detail: {
-      es: "Publicó «La Administración nos pide dos documentos más»",
-      en: "Published “The authority has asked us for two more documents”",
+      es: "Rechazó «Nota simple Alboraia» — no acredita el precio de compra",
+      en: "Rejected “Alboraia registry extract” — it does not show the purchase price",
     },
   },
   {
     id: "act-5",
-    date: "2026-09-15T11:58:00",
+    date: "2026-09-18T14:02:00",
     kind: "documento",
-    actor: "Nerea Duarte Salas",
-    caseId: "c-ext",
+    actor: "Rubén Escrivá Tormo",
+    byClient: true,
+    caseId: "c-lab",
     detail: {
-      es: "Pidió al cliente el certificado bancario y el seguro médico",
-      en: "Requested the bank certificate and health insurance from the client",
+      es: "Subió «Certificado SEPE»",
+      en: "Uploaded “SEPE certificate”",
     },
   },
   {
     id: "act-6",
-    date: "2026-09-15T20:05:00",
-    kind: "acceso",
-    actor: "Javier Molina Ruiz",
-    byClient: true,
-    detail: { es: "Entró en el portal desde Android · Chrome", en: "Signed in from Android · Chrome" },
+    date: "2026-09-18T13:20:00",
+    kind: "publicacion",
+    actor: "Marta Ferrandis Gil",
+    caseId: "c-inm",
+    detail: {
+      es: "Publicó «Ya tenemos día y hora en la notaría»",
+      en: "Published “The notary appointment is booked”",
+    },
   },
   {
     id: "act-7",
-    date: "2026-09-14T17:20:00",
+    date: "2026-09-18T13:05:00",
+    kind: "documento",
+    actor: "Vicent Ortells Sanchis",
+    caseId: "c-inm",
+    detail: {
+      es: "Pidió al cliente el justificante de la transferencia del precio",
+      en: "Requested the proof of payment of the price from the client",
+    },
+  },
+  {
+    id: "act-8",
+    date: "2026-09-16T16:10:00",
     kind: "publicacion",
-    actor: "Daniel Prieto Rubio",
+    actor: "Ignacio Peris Almela",
+    caseId: "c-civ",
+    detail: {
+      es: "Publicó «Reclamamos por escrito a la promotora y a su aseguradora»",
+      en: "Published “We claimed in writing from the developer and its insurer”",
+    },
+  },
+  {
+    id: "act-9",
+    date: "2026-09-15T17:44:00",
+    kind: "acceso",
+    actor: "Peter Whitmore Clarke",
+    byClient: true,
+    detail: {
+      es: "Entró como tercero autorizado desde Windows · Edge",
+      en: "Signed in as an authorised third party from Windows · Edge",
+    },
+  },
+  {
+    id: "act-10",
+    date: "2026-09-14T12:25:00",
+    kind: "publicacion",
+    actor: "Ignacio Peris Almela",
     caseId: "c-pen",
     detail: {
       es: "Publicó «Ya hay fecha de juicio»",
@@ -634,58 +779,25 @@ export const ACTIVITY_LOG: ActivityEntry[] = [
     },
   },
   {
-    id: "act-8",
-    date: "2026-09-12T11:30:00",
-    kind: "acceso",
-    actor: "Andrii Kovalenko",
-    byClient: true,
-    detail: {
-      es: "Entró como tercero autorizado desde Android · Chrome",
-      en: "Signed in as an authorised third party from Android · Chrome",
-    },
-  },
-  {
-    id: "act-9",
-    date: "2026-09-10T10:02:00",
-    kind: "documento",
-    actor: "Carmen Serrano Molina",
-    caseId: "c-inm",
-    detail: {
-      es: "Rechazó «Nómina julio» — no se leía bien",
-      en: "Rejected “July payslip” — not legible",
-    },
-  },
-  {
-    id: "act-10",
-    date: "2026-09-02T09:30:00",
-    kind: "acceso-alta",
-    actor: "Iván Nieto Cuesta",
-    detail: {
-      es: "Envió la invitación de acceso a Marta Ibáñez Cortés",
-      en: "Sent the access invitation to Marta Ibáñez Cortés",
-    },
-  },
-  {
     id: "act-11",
-    date: "2026-08-28T16:12:00",
-    kind: "publicacion",
-    actor: "Pablo Cano Ibáñez",
-    caseId: "c-lab",
+    date: "2026-09-10T12:34:00",
+    kind: "descarga",
+    actor: "Amparo Ballester Sanz",
+    byClient: true,
+    caseId: "c-pen",
     detail: {
-      es: "Publicó «Presentamos la papeleta de conciliación»",
-      en: "Published “We filed the conciliation claim”",
+      es: "Descargó «Factura 2026/0637» como tercero autorizado",
+      en: "Downloaded “Invoice 2026/0637” as an authorised third party",
     },
   },
   {
     id: "act-12",
-    date: "2026-08-20T13:44:00",
-    kind: "descarga",
-    actor: "Gestoría Alcores S.L.",
-    byClient: true,
-    caseId: "c-inm",
+    date: "2026-07-06T09:30:00",
+    kind: "acceso-alta",
+    actor: "Lucía Navarro Ripoll",
     detail: {
-      es: "Descargó «Contrato de arras» como tercero autorizado",
-      en: "Downloaded “Deposit agreement” as an authorised third party",
+      es: "Envió la invitación de acceso a Rubén Escrivá Tormo",
+      en: "Sent the access invitation to Rubén Escrivá Tormo",
     },
   },
 ];

@@ -21,21 +21,28 @@
  * `--font-sans` de abajo.
  */
 @theme {
-  /* Acento de marca */
-  --color-accent: #ebb439;
-  --color-accent-light: #ecc773;
-  --color-accent-dark: #c8951f;
-  --color-accent-wash: #fdf7e9;
+  /*
+   * Acento de marca. La web del despacho manda en verde oscuro (#173e34) y lo
+   * usa de fondo de botón con texto blanco; aquí el acento va al revés —fondo
+   * con texto NEGRO encima—, así que el verde oscuro no vale de acento. El que
+   * ocupa ese sitio es el verde salvia de su propia paleta, que da 8,6:1 con
+   * texto negro, y el verde de marca se queda en `accent-dark`, que es donde el
+   * portal lo pide: texto sobre blanco, hovers y casillas de verificación.
+   */
+  --color-accent: #97ab99;
+  --color-accent-light: #bccbbd;
+  --color-accent-dark: #173e34;
+  --color-accent-wash: #f0f4f0;
 
   /* Tinta: del titular al texto secundario */
   --color-ink: #000000;
-  --color-ink-soft: #191919;
-  --color-ink-muted: #4b4f58;
-  --color-ink-faint: #767b85;
+  --color-ink-soft: #1e1c1c;
+  --color-ink-muted: #4c4a4a;
+  --color-ink-faint: #797979;
 
   /* Neutros de estructura */
-  --color-line: #e2e2e2;
-  --color-surface: #f7f7f5;
+  --color-line: #e2e3e0;
+  --color-surface: #f5f6f4;
 
   /*
    * Avisos informativos: el recuadro de estimaciones de la Administración.
@@ -46,5 +53,5 @@
   --color-info-wash: #f4f9fc;
   --color-info-ink: #35617c;
 
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
 }

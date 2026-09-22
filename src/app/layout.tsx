@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import { APP } from "@/config/identity";
@@ -10,10 +10,10 @@ import { APP } from "@/config/identity";
  * no se puede elegir la fuente desde un dato. Cambiarla son dos ediciones que
  * van juntas: el import de aquí y `--font-sans` en `config/theme.css`.
  */
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "700", "900"],
   display: "swap",
 });
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${montserrat.variable} h-full antialiased`}>
+    <html lang="es" className={`${lato.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-white">
         <StoreProvider>{children}</StoreProvider>
       </body>

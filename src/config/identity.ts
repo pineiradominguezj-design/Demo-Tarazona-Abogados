@@ -14,12 +14,12 @@
  */
 
 export const FIRM = {
-  name: "Despacho Modelo",
-  address: "Calle de Ejemplo, 1 · 00000 Ciudad",
-  phone: "+34 000 00 00 00",
-  altPhone: "+34 000 00 00 01",
-  email: "contacto@ejemplo.es",
-  website: "ejemplo.es",
+  name: "Tarazona Abogados",
+  address: "Avenida del Oeste 35, 8ª · 46001 València",
+  phone: "+34 654 98 97 73",
+  altPhone: "+34 678 70 07 11",
+  email: "tarazonabogados@gmail.com",
+  website: "tarazonaabogadoslegal.com",
 } as const;
 /*
  * Lo que el despacho promete y cómo trabaja —días de respuesta, teléfono de
@@ -38,15 +38,15 @@ export const BRAND = {
    * Al poner un PNG hay que declarar sus medidas reales o `next/image`
    * deformará la imagen.
    */
-  logo: null as string | null,
-  logoWidth: 847,
-  logoHeight: 312,
+  logo: "/logo.png" as string | null,
+  logoWidth: 800,
+  logoHeight: 209,
 
   /**
    * Marca reducida para espacios cuadrados. Si lleva un `&`, se pinta en el
    * color de acento y el resto en blanco; si no, va todo en blanco.
    */
-  monogram: "DM",
+  monogram: "TA",
 } as const;
 
 export const APP = {
@@ -58,7 +58,7 @@ export const APP = {
    * en `localhost:3000`, que es el mismo origen: con la clave repetida, dos
    * demostraciones se pisan la sesión y las publicaciones.
    */
-  storageKey: "portal-demo-modelo-v1",
+  storageKey: "portal-demo-tarazona-v1",
 
   metaTitle: `Portal del cliente · ${FIRM.name}`,
   metaDescription:
