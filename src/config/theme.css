@@ -28,6 +28,11 @@
    * ocupa ese sitio es el verde salvia de su propia paleta, que da 8,6:1 con
    * texto negro, y el verde de marca se queda en `accent-dark`, que es donde el
    * portal lo pide: texto sobre blanco, hovers y casillas de verificación.
+   *
+   * `accent-dark` es además el fondo del panel de marca de las pantallas
+   * anteriores al acceso (`AuthShell`), que lleva texto BLANCO encima —hasta
+   * `white/45` en la dirección del pie—. Tiene que ser oscuro de verdad: este
+   * verde da 11,8:1 con blanco. Un acento oscuro flojo deja ese panel ilegible.
    */
   --color-accent: #97ab99;
   --color-accent-light: #bccbbd;

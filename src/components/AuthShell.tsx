@@ -17,7 +17,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col">
       <div className="flex flex-1 flex-col lg:flex-row">
         {/* Panel de marca */}
-        <aside className="relative flex flex-col justify-between bg-ink px-8 py-8 lg:w-[42%] lg:px-14 lg:py-14">
+        <aside className="relative flex flex-col justify-between bg-accent-dark px-8 py-8 lg:w-[42%] lg:px-14 lg:py-14">
           <div>
             <div className="inline-block bg-white px-5 py-4">
               <Logo className="h-9 lg:h-11" priority />
