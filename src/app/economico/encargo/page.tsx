@@ -39,6 +39,7 @@ export default function EngagementPage() {
 
               <Link
                 href={`/asuntos/${e.caseId}`}
+                scroll={false}
                 className="group mt-3 inline-flex items-start gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent-dark"
               >
                 {caseTitle(e.caseId)}

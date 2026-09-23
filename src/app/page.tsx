@@ -18,7 +18,9 @@ export default function Home() {
     if (!client) {
       router.replace("/acceso");
     } else if (cases.length === 1) {
-      router.replace(`/asuntos/${cases[0].id}`);
+      // `scroll: false` por lo mismo que en el listado: sin él, Next sube el
+      // historial —que es la `page`— y se salta el Resumen del layout.
+      router.replace(`/asuntos/${cases[0].id}`, { scroll: false });
     } else {
       router.replace("/asuntos");
     }

@@ -43,7 +43,8 @@ function AsuntosContent() {
 
   // Si solo hay un asunto, el cliente va directo a su ficha.
   useEffect(() => {
-    if (cases.length === 1) router.replace(`/asuntos/${cases[0].id}`);
+    if (cases.length === 1)
+      router.replace(`/asuntos/${cases[0].id}`, { scroll: false });
   }, [cases, router]);
 
   if (!client) return null;
@@ -164,7 +165,14 @@ function AsuntosContent() {
       <ul className="mt-8 grid gap-4 md:grid-cols-2">
         {summaries.map(({ c, s }) => (
           <li key={c.id}>
-            <Link href={`/asuntos/${c.id}`} className="group block h-full">
+            {/* `scroll={false}`: el Resumen vive en el layout de la ficha, y
+                Next, al no ver la `page` (el historial) en pantalla, la subía
+                arriba del todo dejando el Resumen fuera. Ver `layout.tsx`. */}
+            <Link
+              href={`/asuntos/${c.id}`}
+              scroll={false}
+              className="group block h-full"
+            >
               <Card hover className="h-full">
                 <AreaStripe area={c.area} />
 
